@@ -4,13 +4,15 @@ var favicon = require("serve-favicon");
 var logger = require("morgan");
 var cookieParser = require("cookie-parser");
 var bodyParser = require("body-parser");
+const hbs = require("hbs");
 
 var routes = require("./routes/index");
-var users = require("./routes/users");
+// var users = require("./routes/users");
 
 var app = express();
 
 // view engine setup
+hbs.registerPartials(__dirname + "/views/partials");
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "hbs");
 
@@ -22,15 +24,19 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
+//  Bootstrap
+app.use("/js", express.static(__dirname + "/node_modules/bootstrap/dist/js")); // redirect bootstrap JS
+app.use("/css", express.static(__dirname + "/node_modules/bootstrap/dist/css")); // redirect CSS bootstrap
+
 app.use("/", routes);
-app.use("/users", users);
+// app.use("/users", users);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error("Not Found");
   err.status = 404;
   next(err);
-  console.log("instantiated");
+  // console.log("instantiated");
 });
 
 // error handlers
@@ -44,7 +50,13 @@ if (app.get("env") === "development") {
       message: err.message,
       error: err
     });
-    console.log("inside error1");
+    // console.log(err);
+
+    if (err) {
+      console.log(err);
+    } else {
+      console.log("hello world");
+    }
   });
 }
 
@@ -56,7 +68,7 @@ app.use(function(err, req, res, next) {
     message: err.message,
     error: {}
   });
-  // console.log("inside error2");
+  console.log("inside error2");
 });
 
 module.exports = app;
