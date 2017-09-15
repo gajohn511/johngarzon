@@ -105,6 +105,9 @@ section {
     position: relative;
 }
 
+
+/* header media */
+
 #headermedia {
     padding: 0;
 }
@@ -133,3 +136,26 @@ section {
     opacity: 0.3;
     background-color: #000000;
 }
+
+.header-inner {
+    display: none;
+}
+
+@media only screen and (max-width: 1024px) {
+    .headerimage {
+        background-image: none;
+        height: auto !important;
+    }
+
+    .header-inner {
+        display: block;
+        width: 100%;
+    }
+
+    .overlay {
+        height: auto;
+    }
+
+}
+
+/* end of header media ---------------------------------------> */
