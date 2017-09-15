@@ -55,14 +55,23 @@
 }
 
 header {
-    position: absolute;
+    position: fixed;
     top: 0;
     background-color: transparent;
     height: auto;
     z-index: 9999;
 
-    border-bottom: 1px solid #f1f1f1;
+    /* border-bottom: 1px solid #f1f1f1; */
     width: 100%;
+    /* background-color: rgba(255,255,255,0.3); */
+    padding: 20px 0;
+
+    -webkit-transition: all 0.6s ease-out; /* Safari */
+    transition: all 0.6s ease-out;
+}
+header.on {
+    background-color: #000000;
+    padding: 5px 0;
 }
 
 .clrheader {
@@ -82,6 +91,7 @@ header {
     max-height: 65px;
 }
 
+/* end of master header */
 
 .main {
     position: relative;
@@ -100,14 +110,26 @@ section {
 }
 
 .headerimage {
-    background-image: url("/images/logos/pexels-photo-221433.jpeg");
+    background-image: url("/images/logos/falltreats.jpg");
     /* height: 500px;  */
-    opacity: 0.5;
-    min-height: 630px;
+    /* opacity: 0.8; */
+    min-height: 74vh;
 
     /* Create the parallax scrolling effect */
     background-attachment: fixed;
-    background-position: center;
+    background-position: center bottom;
     background-repeat: no-repeat;
     background-size: cover;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=30)";
+    filter: alpha(opacity=30);
+    opacity: 0.3;
+    background-color: #000000;
 }

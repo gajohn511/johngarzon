@@ -13,7 +13,7 @@
 {{!-- if_1-02_2270783.png --}}
 
 <div class="clr">
-    <header>
+    <header id="masthead">
         <div class="container">
             <div class="clrheader">
                 
@@ -36,7 +36,7 @@
         <section class="head">
             <div id="headermedia" class="container-fluid">
                 <div class="headerimage">
-
+                    <div class="overlay" style="opacity: 0.3;"></div>
                 </div>
             </div>
         </section>
@@ -52,8 +52,37 @@
 </body>
 
 <script type="text/javascript">
+
+// global vars
+var doc;
+
+
 $( document ).ready(function() {
     console.log("We are now operational");
+
+    // vars
+    doc = $(document);
+
+    $('body').css('height', '200vh');
+
+
+    $(window).scroll(function() {
+        //console.log(doc.scrollTop());
+        var head = $('#masthead');
+
+        if(doc.scrollTop() >= 200)
+        {
+            head.addClass("on");
+        } else if (doc.scrollTop() <= 199)
+        {
+            head.removeClass("on");
+        }
+
+    });
+
+
+    
+
 });
 </script>
 
