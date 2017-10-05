@@ -8,6 +8,9 @@
  {{> head}} 
 
  <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville" rel="stylesheet">
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.16.2/axios.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.4/lodash.js"></script>
+ {{!-- <script src="vue/app.vue"></script> --}}
 </head>
 <body>
 {{!-- if_1-02_2270783.png --}}
@@ -15,8 +18,33 @@
 <div class="clr">
     <header id="masthead">
         <div class="container">
-            <div class="clrheader">
+            <div class="row">
+                <div class="col-md-4 col-sm-8 col-xs-12">
+                    <div class="sitelogo">
+                        <a href="/">
+                            <img src="/images/logos/burganikos logo white-01.png" >
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-8 col-sm-4 col-xs-12">
+                    <div class="imenuparent">
+                        <div class="inner">
+                            <ul id="themenu" class="imenu clearfix">
+                                {{!-- <li>Home</li>
+                                <li>About</li> --}}
+                                <li v-for="item in sorted" >
+                                    <a v-bind:href="item.link">\{{ item.text }}</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--
+            <div class="clrheader clearfix">
                 
+                {{!-- logo --}}
                 <div class="clrlogo">
                     <div class="inner">
                         <a href="/">
@@ -25,7 +53,21 @@
                     </div>
                 </div>
 
+                {{!-- menu --}}
+                <div class="imenuparent">
+                    <div class="inner">
+                        <ul id="themenu" class="imenu clearfix">
+                            {{!-- <li>Home</li>
+                            <li>About</li> --}}
+                            <li v-for="item in sorted" >
+                                <a v-bind:href="item.link">\{{ item.text }}</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
             </div>
+            -->
         </div>
     </header>
 </div>
@@ -49,8 +91,11 @@
     </article>
 </div>
 
+{{!-- <div id="test">   
+    \{{ msg }}
+</div> --}}
 
-
+<div id="app"></div>
 
 </body>
 
@@ -83,10 +128,60 @@ $( document ).ready(function() {
 
     });
 
-
     
 
 });
+
+
+
+</script>
+
+{{!-- vue --}}
+<script type="text/javascript">    
+
+
+// header menu items 
+// #themenu
+    /*Vue.component('menuitem', {
+        props: ['thismenu'],
+        template: '<li>{{ thismenu.text }}</li>'
+    });*/
+
+    var menuapp = new Vue({
+        el: "#themenu",
+        data: {
+            items: [
+               /* { id: 0, text: "Home" },
+                { id: 1, text: "About" } */
+            ]
+        },
+        mounted () {
+            this.getlist();
+        },
+        methods: {
+            getlist: function () {
+                var uri = "/api/menuitems";
+                var self = this;
+                axios.get(uri)
+                    .then(function(resp) {
+                        // console.log(JSON.stringify(resp, undefined, 3));
+                        if (resp.status === 200) {
+                            self.items = resp.data;
+                        }
+                    })
+                    .catch(function(err) {
+                        console.log(`error with REST ${uri}`, err);
+                    });
+            }
+        },
+        computed: {
+            sorted: function () {
+                return _.orderBy(this.items,["id"], ["asc"]);
+            }
+        }
+    });
+
+
 </script>
 
 </html>

@@ -1,3 +1,13 @@
+a {
+    color: #FFF;
+}
+a:hover {
+    text-decoration: none;
+    color: #c9c9c9;
+    cursor: pointer;
+}
+
+
 /* .box {
     min-height: 100px;
     margin-top: 40px;
@@ -66,14 +76,26 @@ header {
     /* background-color: rgba(255,255,255,0.3); */
     padding: 20px 0;
 
-    -webkit-transition: all 0.6s ease-out; /* Safari */
-    transition: all 0.6s ease-out;
+    -webkit-transition: all 0.4s ease-out; /* Safari */
+    transition: all 0.4s ease-out;
 }
 header.on {
     background-color: #000000;
     padding: 5px 0;
 }
 
+header[id=masthead] .row {
+    display: flex;
+    align-items: center;
+}
+
+.sitelogo img {
+    max-width: 120px;
+    height: auto;
+}
+
+/* -------------------------P---------------------------------- */
+/*
 .clrheader {
     position: relative;
 }
@@ -82,16 +104,55 @@ header.on {
     height: 100%;
     display: table;
 }
-.clrheader > div > .inner {
+.clrheader .inner {
     display: table-cell;
     vertical-align: middle;
 }
 
 .clrlogo img {
-    max-height: 65px;
+    max-width: 120px;
+    height: auto;
 }
 
-/* end of master header */
+*/
+/* -------------------------P---------------------------------- */
+
+/* menu */
+
+.imenuparent { 
+    float: right !important;
+    color: #fff; 
+}
+
+.imenu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.imenu > li {
+    float: left;
+    display: block;
+    position: relative;
+    margin: 0;
+    padding: 10px;
+    /* border-bottom: 1px solid transparent; */
+    transition: background-color 0.2s linear;
+}
+.imenu > li:hover {
+    background-color: rgba(0,0,0, .3);
+}
+
+.imenu > li a {
+    transition: all 0.2s linear;
+    padding: 5px;
+}
+.imenu > li a:hover {
+    color: #c9c9c9;
+}
+
+/* end of menu */
+
+/* end of master header --------------------------------> */
 
 .main {
     position: relative;
@@ -145,6 +206,7 @@ section {
     .headerimage {
         background-image: none;
         height: auto !important;
+        min-height: unset;
     }
 
     .header-inner {

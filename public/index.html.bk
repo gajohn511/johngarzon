@@ -1,0 +1,35 @@
+<html>
+    <head>
+        <title>
+            testing 1 2 3
+        </title>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
+<script src="/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="/css/bootstrap.min.css"> 
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/bdstyle.css"> 
+
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.4.0/vue.js"></script> -->
+<script src="https://unpkg.com/vue"></script>
+    </head>
+
+<body>
+    
+    <div id="test">   
+        {{ msg }}
+    </div>
+
+</body>
+
+<script type="text/javascript">    
+
+    var testapp = new Vue({
+        el: "#test",
+        data: {
+            msg: "yo this is a test"
+        }
+    });
+
+</script>
+</html>
